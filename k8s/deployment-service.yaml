@@ -5,6 +5,7 @@ metadata:
   name: heap-demo
   labels:
     app: heap-demo
+
 spec:
   replicas: 2
 
@@ -25,6 +26,13 @@ spec:
         - name: heap-demo
           image: gauravcloud000/k8s-heap-demo:1.0
 
+          # Limit Node.js V8 old-space heap to 128 MB
+          command:
+            - node
+          args:
+            - "--max-old-space-size=128"
+            - "/app/server.js"
+
           ports:
             - containerPort: 3000
 
@@ -34,13 +42,14 @@ spec:
               memory: "128Mi"
             limits:
               cpu: "500m"
-              memory: "512Mi"
+              memory: "256Mi"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: heap-demo
+
 spec:
   type: NodePort
 
