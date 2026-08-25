@@ -30,7 +30,7 @@ spec:
             - node
 
           args:
-            - "--max-old-space-size=32"
+            - "--max-old-space-size=16"
             - "--heapsnapshot-near-heap-limit=3"
             - "--heapsnapshot-signal=SIGUSR2"
             - "--diagnostic-dir=/snapshots"
