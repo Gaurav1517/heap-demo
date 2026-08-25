@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: heap-demo
-          image: k8s-heap-demo:1.0
+          image: gauravcloud000/k8s-heap-demo:1.0
 
           ports:
             - containerPort: 3000
