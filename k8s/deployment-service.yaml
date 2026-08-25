@@ -26,11 +26,19 @@ spec:
         - name: heap-demo
           image: gauravcloud000/k8s-heap-demo:1.0
 
-          # Limit Node.js V8 old-space heap to 128 MB
+          # Node.js heap diagnostics
           command:
             - node
+
           args:
+            # Limit V8 old-space heap
             - "--max-old-space-size=128"
+
+            # Automatically capture heap snapshots
+            # as the process approaches the V8 heap limit.
+            - "--heapsnapshot-near-heap-limit=3"
+
+            # Application
             - "/app/server.js"
 
           ports:
@@ -40,9 +48,20 @@ spec:
             requests:
               cpu: "100m"
               memory: "128Mi"
+
             limits:
               cpu: "500m"
               memory: "256Mi"
+
+          # Make sure there is enough filesystem space
+          # for heap snapshots.
+          volumeMounts:
+            - name: heap-snapshots
+              mountPath: /snapshots
+
+      volumes:
+        - name: heap-snapshots
+          emptyDir: {}
 
 ---
 apiVersion: v1
