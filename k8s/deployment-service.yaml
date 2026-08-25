@@ -30,7 +30,7 @@ spec:
             - node
 
           args:
-            - "--max-old-space-size=128"
+            - "--max-old-space-size=64"
             - "--heapsnapshot-near-heap-limit=3"
             - "--heapsnapshot-signal=SIGUSR2"
             - "--diagnostic-dir=/snapshots"
@@ -46,7 +46,7 @@ spec:
 
             limits:
               cpu: "500m"
-              memory: "512Mi"
+              memory: "256Mi"
 
           volumeMounts:
             - name: heap-snapshots
