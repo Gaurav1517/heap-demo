@@ -18,6 +18,8 @@ spec:
         app: heap-demo
 
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: control-plane
       containers:
         - name: heap-demo
           image: gauravcloud000/k8s-heap-demo:1.0
