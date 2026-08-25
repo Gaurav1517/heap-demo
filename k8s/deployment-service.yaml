@@ -30,14 +30,9 @@ spec:
             - node
 
           args:
-            # Keep V8 heap small so OOM happens quickly
             - "--max-old-space-size=128"
-
-            # Automatically generate heap snapshots
-            # when approaching the V8 heap limit.
             - "--heapsnapshot-near-heap-limit=3"
-
-            # Application
+            - "--heapsnapshot-signal=SIGUSR2"
             - "/app/server.js"
 
           ports:
