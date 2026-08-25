@@ -33,6 +33,7 @@ spec:
             - "--max-old-space-size=128"
             - "--heapsnapshot-near-heap-limit=3"
             - "--heapsnapshot-signal=SIGUSR2"
+            - "--diagnostic-dir=/snapshots"
             - "/app/server.js"
 
           ports:
@@ -53,9 +54,7 @@ spec:
 
       volumes:
         - name: heap-snapshots
-          hostPath:
-            path: /var/lib/heap-demo/snapshots
-            type: DirectoryOrCreate
+          emptyDir: {}
 
 ---
 apiVersion: v1
