@@ -1,0 +1,12 @@
+{
+  "name": "k8s-heap-demo",
+  "version": "1.0.0",
+  "description": "Node.js application for Kubernetes heap memory and GC lab",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --expose-gc --trace-gc server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
